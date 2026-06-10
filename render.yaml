@@ -11,10 +11,11 @@ services:
         value: 3.10.0
 
   # 2. Frontend Portal (Vite React + Tailwind CSS)
-  - type: static
+  - type: web
     name: tecnoventas-frontend
+    env: static
     buildCommand: npm run build
-    publishDir: dist
+    staticPublishPath: dist
     rootDir: frontend
     routes:
       # Rewrite rule to route all paths to index.html for React Router (Single Page Application) support
