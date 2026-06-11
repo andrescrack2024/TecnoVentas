@@ -4,6 +4,7 @@ import { AuthProvider } from "./contexts/AuthContext";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import CartDrawer from "./components/CartDrawer";
 
 import Home from "./pages/Home";
 import Catalog from "./pages/Catalog";
@@ -17,6 +18,7 @@ import AdminLogin from "./pages/AdminLogin";
 
 function AppContent() {
   const [cart, setCart] = useState([]);
+  const [cartDrawerOpen, setCartDrawerOpen] = useState(false);
   const location = useLocation();
 
   // Scroll a la parte superior en cada cambio de ruta
@@ -59,6 +61,7 @@ function AppContent() {
       });
     }
     saveCartToStorage(updatedCart);
+    setCartDrawerOpen(true); // Abrir el panel del carrito automáticamente
   };
 
   const handleUpdateQuantity = (productId, newQuantity) => {
@@ -87,7 +90,18 @@ function AppContent() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      {!isDashboard && <Header cartCount={cartCount} />}
+      {!isDashboard && <Header cartCount={cartCount} onCartClick={() => setCartDrawerOpen(true)} />}
+      
+      {/* Reusable slide-over shopping cart panel */}
+      <CartDrawer 
+        isOpen={cartDrawerOpen} 
+        onClose={() => setCartDrawerOpen(false)}
+        cartItems={cart}
+        onUpdateQuantity={handleUpdateQuantity}
+        onRemoveFromCart={handleRemoveFromCart}
+        onClearCart={handleClearCart}
+      />
+
       <div className="flex-grow">
         <Routes>
           <Route path="/" element={<Home onAddToCart={handleAddToCart} />} />

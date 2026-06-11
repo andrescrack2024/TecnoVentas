@@ -3,7 +3,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { Menu, X, ShoppingCart, User, LogOut } from "lucide-react";
 
-export default function Header({ cartCount }) {
+export default function Header({ cartCount, onCartClick }) {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -101,7 +101,8 @@ export default function Header({ cartCount }) {
             {/* Shopping Cart */}
             <Link 
               to="/cart" 
-              className="relative p-2.5 text-white hover:text-[#dfb648] bg-[#4e5a6a]/25 border border-slate-600/30 rounded-xl transition-all duration-200 no-underline"
+              onClick={(e) => { e.preventDefault(); onCartClick(); }}
+              className="relative p-2.5 text-white hover:text-[#dfb648] bg-[#4e5a6a]/25 border border-slate-600/30 rounded-xl transition-all duration-200 no-underline cursor-pointer"
             >
               <ShoppingCart className="w-4.5 h-4.5" />
               {cartCount > 0 && (
@@ -156,7 +157,8 @@ export default function Header({ cartCount }) {
           <div className="flex items-center gap-2 lg:hidden">
             <Link 
               to="/cart" 
-              className="relative p-2 text-white hover:text-[#dfb648] bg-slate-800/80 border border-slate-700/50 rounded-xl no-underline"
+              onClick={(e) => { e.preventDefault(); onCartClick(); }}
+              className="relative p-2 text-white hover:text-[#dfb648] bg-slate-800/80 border border-slate-700/50 rounded-xl no-underline cursor-pointer"
             >
               <ShoppingCart className="w-4.5 h-4.5" />
               {cartCount > 0 && (
