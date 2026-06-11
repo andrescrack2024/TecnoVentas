@@ -87,12 +87,18 @@ export default function Header({ cartCount, onCartClick }) {
                 {link.label}
               </Link>
             ))}
-            <a 
-              href="#contacto" 
+            <Link 
+              to="/#contacto" 
+              onClick={(e) => {
+                if (location.pathname === "/") {
+                  e.preventDefault();
+                  document.getElementById("contacto")?.scrollIntoView({ behavior: "smooth" });
+                }
+              }}
               className="px-4 py-2 text-[13px] font-bold tracking-wide text-slate-300 hover:text-white no-underline transition-all duration-200"
             >
               CONTACTO
-            </a>
+            </Link>
           </nav>
 
           {/* Action Controls */}
@@ -197,13 +203,19 @@ export default function Header({ cartCount, onCartClick }) {
               {link.label}
             </Link>
           ))}
-          <a 
-            href="#contacto" 
-            onClick={() => setMobileMenuOpen(false)}
+          <Link 
+            to="/#contacto" 
+            onClick={(e) => {
+              setMobileMenuOpen(false);
+              if (location.pathname === "/") {
+                e.preventDefault();
+                document.getElementById("contacto")?.scrollIntoView({ behavior: "smooth" });
+              }
+            }}
             className="py-2.5 px-4 rounded-lg text-slate-300 hover:text-white font-semibold text-sm no-underline transition-all"
           >
             CONTACTO
-          </a>
+          </Link>
           
           <hr className="border-slate-800 my-2" />
           

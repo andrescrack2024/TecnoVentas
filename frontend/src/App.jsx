@@ -21,10 +21,19 @@ function AppContent() {
   const [cartDrawerOpen, setCartDrawerOpen] = useState(false);
   const location = useLocation();
 
-  // Scroll a la parte superior en cada cambio de ruta
+  // Scroll a la parte superior en cada cambio de ruta o al elemento hash si existe
   useEffect(() => {
+    if (location.hash) {
+      const element = document.getElementById(location.hash.substring(1));
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+        return;
+      }
+    }
     window.scrollTo(0, 0);
-  }, [location.pathname]);
+  }, [location.pathname, location.hash]);
 
   // Cargar carrito desde localStorage al montar el componente
   useEffect(() => {
