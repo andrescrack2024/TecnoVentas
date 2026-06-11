@@ -105,7 +105,7 @@ export default function Cart({ cartItems, onUpdateQuantity, onRemoveFromCart, on
 
           {/* Order Summary */}
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-2xl border border-slate-100 p-6 sticky top-24">
+            <div className="bg-white rounded-2xl border border-slate-100 p-6 sticky top-24 flex flex-col">
               <h3 className="font-[Outfit] text-lg font-bold text-slate-800 mb-6">Resumen del Pedido</h3>
               
               <div className="flex flex-col gap-3 text-sm">
@@ -131,13 +131,13 @@ export default function Cart({ cartItems, onUpdateQuantity, onRemoveFromCart, on
 
               <button 
                 onClick={handleCheckout}
-                className="btn-3d-gold w-full py-3.5 mt-6 text-sm cursor-pointer border-0"
+                className="btn-3d-gold w-full py-3.5 mt-6 mb-4 text-sm cursor-pointer border-0"
               >
                 <CreditCard className="w-4 h-4" />
                 {user ? 'PROCESAR COMPRA' : 'INGRESAR PARA COMPRAR'}
               </button>
 
-              <div className="flex items-center justify-center gap-2 mt-4 text-slate-400 text-xs">
+              <div className="flex items-center justify-center gap-2 text-slate-400 text-xs pb-1">
                 <ShieldCheck className="w-4 h-4" />
                 <span>Pago 100% seguro</span>
               </div>
