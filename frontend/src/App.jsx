@@ -96,6 +96,7 @@ function AppContent() {
   const cartCount = cart.reduce((acc, item) => acc + item.quantity, 0);
 
   const isDashboard = location.pathname === "/dashboard";
+  const hideFooter = ["/dashboard", "/auth", "/admin/login"].includes(location.pathname);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -131,7 +132,7 @@ function AppContent() {
           <Route path="/app-web-dev" element={<AppWebDev />} />
         </Routes>
       </div>
-      {!isDashboard && <Footer />}
+      {!hideFooter && <Footer />}
     </div>
   );
 }
