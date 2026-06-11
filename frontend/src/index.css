@@ -124,14 +124,29 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
 }
 
-.tech-form-container input {
+.tech-form-container input,
+.tech-form-container select {
   background-color: #eae8e4 !important;
   color: #0f172a !important;
   border: none !important;
   border-radius: 9999px !important;
   padding-left: 1.25rem !important;
   padding-right: 1.25rem !important;
-  font-weight: 500;
+  padding-top: 0.85rem !important;
+  padding-bottom: 0.85rem !important;
+  font-weight: 600;
+  font-size: 0.875rem !important;
+  height: 48px !important;
+}
+
+.tech-form-container select {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%230f172a' stroke-width='2.5'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19.5 8.25l-7.5 7.5-7.5-7.5'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 1.25rem center !important;
+  background-size: 1.1rem !important;
+  padding-right: 3rem !important;
 }
 
 .tech-form-container textarea {
@@ -139,18 +154,21 @@ h1, h2, h3, h4, h5, h6 {
   color: #0f172a !important;
   border: none !important;
   border-radius: 18px !important;
-  padding: 1rem 1.25rem !important;
-  font-weight: 500;
+  padding: 1.1rem 1.25rem !important;
+  font-weight: 600;
+  font-size: 0.875rem !important;
 }
 
 .tech-form-container input::placeholder, 
 .tech-form-container textarea::placeholder {
-  color: #8892a0;
+  color: #718096;
 }
 
 .tech-form-container label {
   color: #dfb648 !important;
-  font-weight: 700;
+  font-weight: 800;
+  font-size: 10px !important;
+  letter-spacing: 0.05em;
 }
 
 /* ===== ANIMATIONS ===== */
