@@ -129,17 +129,19 @@ export default function Cart({ cartItems, onUpdateQuantity, onRemoveFromCart, on
                 </div>
               </div>
 
-              <button 
-                onClick={handleCheckout}
-                className="btn-3d-gold w-full py-3.5 mt-6 mb-4 text-sm cursor-pointer border-0"
-              >
-                <CreditCard className="w-4 h-4" />
-                {user ? 'PROCESAR COMPRA' : 'INGRESAR PARA COMPRAR'}
-              </button>
+              <div className="flex flex-col gap-3 mt-6 w-full">
+                <button 
+                  onClick={handleCheckout}
+                  className="btn-3d-gold w-full py-3.5 text-sm cursor-pointer border-0"
+                >
+                  <CreditCard className="w-4 h-4" />
+                  {user ? 'PROCESAR COMPRA' : 'INGRESAR PARA COMPRAR'}
+                </button>
 
-              <div className="flex items-center justify-center gap-2 text-slate-400 text-xs pb-1">
-                <ShieldCheck className="w-4 h-4" />
-                <span>Pago 100% seguro</span>
+                <div className="flex items-center justify-center gap-2 text-slate-400 text-xs pb-1">
+                  <ShieldCheck className="w-4 h-4" />
+                  <span>Pago 100% seguro</span>
+                </div>
               </div>
             </div>
           </div>
