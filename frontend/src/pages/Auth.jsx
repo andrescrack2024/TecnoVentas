@@ -406,30 +406,16 @@ export default function Auth() {
             </div>
           )}
 
-          {/* Tabs */}
-          <div className="flex border-b border-slate-800">
-            <button
-              onClick={() => handleTabChange("login")}
-              className={`flex-1 flex items-center justify-center gap-2.5 py-4.5 text-sm font-extrabold tracking-wide border-0 cursor-pointer transition-all duration-200 ${
-                activeTab === "login"
-                  ? "text-cyan-400 bg-cyan-500/10 border-b-2 border-b-cyan-400"
-                  : "text-slate-500 bg-transparent hover:text-slate-300 hover:bg-slate-800/40"
-              }`}
-            >
-              <LogIn className="w-4.5 h-4.5" />
-              Iniciar Sesión
-            </button>
-            <button
-              onClick={() => handleTabChange("register")}
-              className={`flex-1 flex items-center justify-center gap-2.5 py-4.5 text-sm font-extrabold tracking-wide border-0 cursor-pointer transition-all duration-200 ${
-                activeTab === "register"
-                  ? "text-cyan-400 bg-cyan-500/10 border-b-2 border-b-cyan-400"
-                  : "text-slate-500 bg-transparent hover:text-slate-300 hover:bg-slate-800/40"
-              }`}
-            >
-              <UserPlus className="w-4.5 h-4.5" />
-              Registrarse
-            </button>
+          {/* Card Header Title */}
+          <div className="px-6 pt-8 pb-1 text-center">
+            <h2 className="text-xl font-[Outfit] font-extrabold text-[#dfb648] tracking-wide uppercase">
+              {activeTab === "login" ? "Iniciar Sesión" : "Crear Cuenta"}
+            </h2>
+            <p className="text-xs text-slate-400 mt-1">
+              {activeTab === "login" 
+                ? "Ingresa tus credenciales para acceder a tu cuenta" 
+                : "Regístrate para realizar compras y gestionar proyectos"}
+            </p>
           </div>
 
           {/* Form Container */}
