@@ -390,4 +390,120 @@ h1, h2, h3, h4, h5, h6 {
   animation: slideInRight 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
+/* ===== CYBER HERO CARDS ===== */
+.cyber-hero-card {
+  position: relative;
+  overflow: hidden;
+  background: rgba(13, 27, 49, 0.45);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  width: 130px;
+  height: 130px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  cursor: pointer;
+  user-select: none;
+}
+
+@media (min-width: 768px) {
+  .cyber-hero-card {
+    width: 145px;
+    height: 145px;
+  }
+}
+
+.cyber-hero-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Category Specific Styles & Glows */
+.cyber-hero-card-cyan {
+  --glow-color: rgba(6, 182, 212, 0.4);
+  --accent-color: #06b6d4;
+}
+.cyber-hero-card-emerald {
+  --glow-color: rgba(16, 185, 129, 0.4);
+  --accent-color: #10b981;
+}
+.cyber-hero-card-amber {
+  --glow-color: rgba(223, 182, 72, 0.4);
+  --accent-color: #dfb648;
+}
+.cyber-hero-card-purple {
+  --glow-color: rgba(139, 92, 246, 0.4);
+  --accent-color: #8b5cf6;
+}
+
+.cyber-hero-card .icon-animate {
+  color: var(--accent-color);
+  filter: drop-shadow(0 0 8px var(--glow-color));
+}
+
+.cyber-hero-card:hover {
+  box-shadow: 0 0 30px var(--glow-color),
+              inset 0 0 15px rgba(255, 255, 255, 0.05);
+}
+
+.cyber-hero-card:hover .icon-animate {
+  filter: drop-shadow(0 0 16px var(--accent-color));
+  color: #fff;
+}
+
+/* Icon-specific animations on hover */
+.cyber-hero-card-cyan:hover .icon-animate {
+  animation: spinSlow 6s linear infinite;
+}
+.cyber-hero-card-emerald:hover .icon-animate {
+  animation: wobble 0.6s ease-in-out infinite;
+}
+.cyber-hero-card-amber:hover .icon-animate {
+  animation: pulseScale 1s ease-in-out infinite;
+}
+.cyber-hero-card-purple:hover .icon-animate {
+  animation: bounceMini 0.8s ease-in-out infinite;
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes wobble {
+  0%, 100% { transform: rotate(0deg) scale(1.1); }
+  25% { transform: rotate(-8deg) scale(1.1); }
+  75% { transform: rotate(8deg) scale(1.1); }
+}
+@keyframes pulseScale {
+  0%, 100% { transform: scale(1.1); }
+  50% { transform: scale(1.22); }
+}
+@keyframes bounceMini {
+  0%, 100% { transform: translateY(0) scale(1.1); }
+  50% { transform: translateY(-4px) scale(1.1); }
+}
+
+/* Form highlight/glow when referred from hero click */
+.form-glowing-highlight {
+  animation: formGlow 2.2s ease-in-out forwards;
+}
+
+@keyframes formGlow {
+  0%, 100% {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+    border-color: #ab4b11;
+  }
+  20%, 65% {
+    box-shadow: 0 0 45px rgba(223, 182, 72, 0.55);
+    border-color: #dfb648;
+  }
+}
+
+
 

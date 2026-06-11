@@ -93,6 +93,7 @@ export default function AppWebDev() {
   const [projectEmail, setProjectEmail] = useState("");
   const [projectType, setProjectType] = useState("");
   const [projectDescription, setProjectDescription] = useState("");
+  const [highlightForm, setHighlightForm] = useState(false);
 
   // Technology tabs state
   const [activeTab, setActiveTab] = useState("Todos");
@@ -225,16 +226,68 @@ export default function AppWebDev() {
             {/* Hero Graphic */}
             <div className="hidden lg:flex justify-center">
               <div className="relative">
-                <div className="absolute w-64 h-64 rounded-full bg-cyan-500/10 blur-3xl -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
-                <div className="glass-panel border border-slate-700/50 rounded-3xl p-8 bg-slate-900/40 shadow-2xl">
+                {/* Back glowing orbs */}
+                <div className="absolute w-72 h-72 rounded-full bg-cyan-500/10 blur-3xl -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-pulse-glow"></div>
+                <div className="absolute w-48 h-48 rounded-full bg-[#dfb648]/5 blur-3xl -z-10 top-1/3 left-1/3"></div>
+                
+                {/* Container Glass Panel */}
+                <div className="glass-panel border border-slate-700/40 rounded-[36px] p-8 bg-slate-900/30 shadow-2xl relative">
                   <div className="grid grid-cols-2 gap-4">
                     {SERVICES.map((svc, idx) => {
                       const Icon = svc.icon;
-                      const colors = colorMap[svc.color];
+                      
+                      // Map colors to our cyber classes
+                      const cyberClassMap = {
+                        cyan: "cyber-hero-card-cyan",
+                        emerald: "cyber-hero-card-emerald",
+                        amber: "cyber-hero-card-amber",
+                        purple: "cyber-hero-card-purple",
+                      };
+
+                      const selectValueMap = {
+                        "Sitios Web": "website",
+                        "Apps Móviles": "mobile-app",
+                        "E-Commerce": "ecommerce",
+                        "Sistemas Empresariales": "enterprise",
+                      };
+
                       return (
-                        <div key={idx} className={`${colors.bg} rounded-2xl p-4 flex flex-col items-center gap-2 border border-slate-700/30`}>
-                          <Icon className={`w-8 h-8 ${colors.text}`} />
-                          <span className="text-[10px] text-slate-300 font-bold text-center">{svc.title}</span>
+                        <div 
+                          key={idx}
+                          onClick={() => {
+                            setProjectType(selectValueMap[svc.title]);
+                            document.getElementById("project-form")?.scrollIntoView({ behavior: "smooth" });
+                            setHighlightForm(true);
+                            setTimeout(() => setHighlightForm(false), 2200);
+                          }}
+                          className={`cyber-hero-card ${cyberClassMap[svc.color]} group`}
+                        >
+                          {/* Corner Accent Decals */}
+                          <div className="absolute top-1.5 left-1.5 w-1.5 h-1.5 border-t border-l border-white/20 rounded-tl-sm"></div>
+                          <div className="absolute top-1.5 right-1.5 w-1.5 h-1.5 border-t border-r border-white/20 rounded-tr-sm"></div>
+                          <div className="absolute bottom-1.5 left-1.5 w-1.5 h-1.5 border-b border-l border-white/20 rounded-bl-sm"></div>
+                          <div className="absolute bottom-1.5 right-1.5 w-1.5 h-1.5 border-b border-r border-white/20 rounded-br-sm"></div>
+
+                          {/* Shimmer line on hover */}
+                          <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/[0.04] to-transparent -translate-x-full group-hover:animate-shimmer pointer-events-none"></div>
+
+                          {/* Tech badge index */}
+                          <span className="absolute top-2.5 right-3 text-[8.5px] font-mono opacity-30 group-hover:opacity-75 transition-opacity tracking-widest text-white">
+                            0{idx + 1}
+                          </span>
+
+                          <div className="w-11 h-11 md:w-12 md:h-12 rounded-full bg-slate-950/80 border border-slate-800/80 flex items-center justify-center transition-all duration-300 group-hover:border-white/10 group-hover:scale-110 shadow-inner">
+                            <Icon className="w-5 h-5 md:w-5.5 md:h-5.5 transition-all duration-500 icon-animate" />
+                          </div>
+                          <span className="text-[10px] md:text-[11px] text-slate-300 font-extrabold text-center tracking-wider uppercase group-hover:text-white transition-colors duration-300">
+                            {svc.title}
+                          </span>
+
+                          {/* Pulsing indicator dot */}
+                          <div className="absolute bottom-2 flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-1 group-hover:translate-y-0">
+                            <span className="w-1 h-1 rounded-full bg-[#dfb648] animate-ping"></span>
+                            <span className="text-[6.5px] font-mono tracking-widest text-[#dfb648] uppercase">SOLICITAR</span>
+                          </div>
                         </div>
                       );
                     })}
@@ -397,7 +450,7 @@ export default function AppWebDev() {
               </p>
             </div>
 
-            <div className="tech-form-container p-6 md:p-8">
+            <div className={`tech-form-container p-6 md:p-8 transition-all duration-500 ${highlightForm ? 'form-glowing-highlight' : ''}`}>
               {formSubmitted ? (
                 <div className="flex flex-col items-center justify-center text-center gap-4 py-8 animate-fade-in-up">
                   <div className="w-14 h-14 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
