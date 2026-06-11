@@ -328,6 +328,8 @@ export default function Auth() {
       console.error(err);
       if (err.code === "auth/configuration-not-found") {
         setError("El inicio de sesión con Google no está habilitado en tu proyecto de Firebase. Actívalo en la consola.");
+      } else if (err.code === "auth/unauthorized-domain" || err.message?.includes("unauthorized-domain")) {
+        setError("Dominio no autorizado en Firebase. Copia 'tecnoventas-frontend.onrender.com' y agrégalo en la sección de 'Dominios Autorizados' dentro de la pestaña 'Settings' de Autenticación en tu Consola de Firebase.");
       } else {
         setError(err.message || "Error al iniciar sesión con Google.");
       }
@@ -346,6 +348,8 @@ export default function Auth() {
       console.error(err);
       if (err.code === "auth/configuration-not-found") {
         setError("El inicio de sesión con Facebook no está configurado en Firebase Console. Asegúrate de añadir las credenciales de Facebook Developer.");
+      } else if (err.code === "auth/unauthorized-domain" || err.message?.includes("unauthorized-domain")) {
+        setError("Dominio no autorizado en Firebase. Copia 'tecnoventas-frontend.onrender.com' y agrégalo en la sección de 'Dominios Autorizados' dentro de la pestaña 'Settings' de Autenticación en tu Consola de Firebase.");
       } else {
         setError(err.message || "Error al iniciar sesión con Facebook.");
       }
