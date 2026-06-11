@@ -42,15 +42,15 @@ const TECH_STACK = [
   { name: "React", icon: "⚛️", category: "Frontend" },
   { name: "Next.js", icon: "▲", category: "Frontend" },
   { name: "Tailwind CSS", icon: "🎨", category: "Frontend" },
-  { name: "React Native", icon: "📱", category: "Mobile" },
-  { name: "Flutter", icon: "🦋", category: "Mobile" },
+  { name: "React Native", icon: "📱", category: "Móvil" },
+  { name: "Flutter", icon: "🦋", category: "Móvil" },
   { name: "Python", icon: "🐍", category: "Backend" },
   { name: "Django", icon: "🟢", category: "Backend" },
   { name: "Node.js", icon: "💚", category: "Backend" },
-  { name: "Firebase", icon: "🔥", category: "Cloud" },
-  { name: "PostgreSQL", icon: "🐘", category: "Database" },
-  { name: "AWS", icon: "☁️", category: "Cloud" },
-  { name: "Docker", icon: "🐳", category: "DevOps" },
+  { name: "PostgreSQL", icon: "🐘", category: "Bases de Datos" },
+  { name: "Firebase", icon: "🔥", category: "Cloud & DevOps" },
+  { name: "AWS", icon: "☁️", category: "Cloud & DevOps" },
+  { name: "Docker", icon: "🐳", category: "Cloud & DevOps" },
 ];
 
 const PROCESS_STEPS = [
@@ -93,6 +93,10 @@ export default function AppWebDev() {
   const [projectEmail, setProjectEmail] = useState("");
   const [projectType, setProjectType] = useState("");
   const [projectDescription, setProjectDescription] = useState("");
+
+  // Technology tabs state
+  const [activeTab, setActiveTab] = useState("Todos");
+  const categories = ["Todos", "Frontend", "Backend", "Móvil", "Bases de Datos", "Cloud & DevOps"];
 
   const handleSubmitProject = async (e) => {
     e.preventDefault();
@@ -294,19 +298,41 @@ export default function AppWebDev() {
               Stack Tecnológico Moderno
             </h2>
             <p className="text-slate-400 text-xs max-w-md mt-1">
-              Utilizamos las herramientas y frameworks más actuales de la industria.
+              Utilizamos las herramientas y frameworks más actuales de la industria para garantizar escalabilidad.
             </p>
           </div>
 
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4 max-w-4xl mx-auto">
-            {TECH_STACK.map((tech, idx) => (
-              <div
-                key={idx}
-                className="glass-panel border border-slate-700/30 rounded-xl p-4 flex flex-col items-center gap-2 hover:border-cyan-500/30 hover:bg-cyan-500/5 transition-all duration-300 group cursor-default"
+          {/* Interactive Category Tabs */}
+          <div className="flex flex-wrap justify-center gap-2.5 mb-10 max-w-3xl mx-auto select-none">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveTab(cat)}
+                className={`px-5 py-2.5 rounded-full text-[11px] font-extrabold tracking-wider transition-all duration-200 border cursor-pointer ${
+                  activeTab === cat
+                    ? "bg-[#dfb648] text-slate-950 border-[#dfb648] shadow-[0_0_15px_rgba(223,182,72,0.35)]"
+                    : "bg-slate-900/60 text-slate-400 border-slate-800 hover:text-white hover:border-slate-700"
+                }`}
               >
-                <span className="text-2xl group-hover:scale-110 transition-transform">{tech.icon}</span>
-                <span className="text-[10px] text-slate-300 font-bold text-center">{tech.name}</span>
-                <span className="text-[8px] text-slate-500 font-medium uppercase tracking-wider">{tech.category}</span>
+                {cat.toUpperCase()}
+              </button>
+            ))}
+          </div>
+
+          {/* Technology Cards Grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 max-w-5xl mx-auto">
+            {TECH_STACK.filter(t => activeTab === "Todos" || t.category === activeTab).map((tech, idx) => (
+              <div
+                key={tech.name}
+                className="glass-panel border border-slate-800/80 rounded-2xl p-5 flex flex-col items-center gap-3.5 hover:border-cyan-500/40 hover:bg-cyan-500/5 transition-all duration-300 group cursor-default shadow-lg animate-fade-in-up"
+              >
+                <div className="w-14 h-14 rounded-full bg-slate-950/80 border border-slate-800 flex items-center justify-center text-2xl group-hover:border-cyan-500/50 group-hover:shadow-[0_0_15px_rgba(6,182,212,0.25)] transition-all duration-300">
+                  {tech.icon}
+                </div>
+                <div className="flex flex-col items-center gap-0.5">
+                  <span className="text-[12.5px] text-white font-extrabold tracking-wide text-center">{tech.name}</span>
+                  <span className="text-[9px] text-[#dfb648] font-bold uppercase tracking-widest">{tech.category}</span>
+                </div>
               </div>
             ))}
           </div>
